@@ -1,15 +1,8 @@
 import { create } from 'zustand';
-import { Character } from '@/types/fetch';
+import { Character, CharacterState } from '@/types/characters';
 import { fetchCharacters } from '@/utils/fetch';
 
-type State = {
-  characters: Character[];
-  error: unknown | null;
-  isLoading: boolean;
-  setCharacters: () => void;
-};
-
-export const useCharactersStore = create<State>((set) => ({
+export const useCharactersStore = create<CharacterState>((set) => ({
   characters: [],
   error: null,
   isLoading: true,
