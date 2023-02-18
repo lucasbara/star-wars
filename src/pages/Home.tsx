@@ -3,22 +3,19 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { CharactersList } from '@/components/CharactersList';
 import { Layout } from '@/layouts/Layout';
 import { Button } from '@/components/Button';
-import { Select } from '@/components/Select';
-import { TextField } from '@/components/TextField';
 import { useCharactersStore } from '@/store/characters';
 import { useFilmsStore } from '@/store/films';
+import { useFiltersStore } from '@/store/filters';
 import { usePlanetsStore } from '@/store/planets';
 import { calculateTotalPages, charactersPerPage } from '@/utils/pages';
 
-let searchTimeout: NodeJS.Timeout;
-
 export function Home() {
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
-  const [selectedFilm, setSelectedFilm] = useState('');
+
+  const { search, select } = useFiltersStore();
 
   const { characters, error, isLoading, setCharacters } = useCharactersStore();
-  const { films, setFilms } = useFilmsStore();
+  const { setFilms } = useFilmsStore();
   const { setPlanets } = usePlanetsStore();
 
   useEffect(() => {
@@ -29,18 +26,10 @@ export function Home() {
 
   useEffect(() => {
     setPage(1);
-  }, [search, selectedFilm]);
+  }, [search, select]);
 
   const totalPages =
     characters && !isLoading && calculateTotalPages(characters.length, charactersPerPage);
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    clearTimeout(searchTimeout);
-
-    searchTimeout = setTimeout(() => {
-      setSearch(event.target.value);
-    }, 500);
-  };
 
   const getDisplayedCharacters = () => {
     const startIndex = (page - 1) * charactersPerPage;
@@ -54,9 +43,9 @@ export function Home() {
       );
     }
 
-    if (selectedFilm && selectedFilm !== 'all' && selectedFilm !== 'Select a film...') {
+    if (select && select !== 'all' && select !== 'Select a film...') {
       displayedCharacters = displayedCharacters.filter((character) =>
-        character.films.includes(selectedFilm),
+        character.films.includes(select),
       );
     }
 
@@ -70,22 +59,6 @@ export function Home() {
   return (
     <Layout>
       <section className="w-full h-full flex flex-col ">
-        <div className="w-full flex justify-center md:justify-between items-center ml-6">
-          <TextField
-            name="search"
-            onChange={onChange}
-            placeholder="Search for a character..."
-            value={search}
-          />
-          <Select
-            options={Object.entries(films).filter(([url]) =>
-              characters.some((character) => character.films.includes(url)),
-            )}
-            value={selectedFilm}
-            onChange={(event) => setSelectedFilm(event.target.value)}
-            placeholder="Select a film..."
-          />
-        </div>
         {getDisplayedCharacters().length === 0 && !isLoading ? (
           <p className="h-full flex justify-center items-center">
             Oops! No characters found, captain!
