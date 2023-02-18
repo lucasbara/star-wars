@@ -7,13 +7,13 @@ import { useCharactersStore } from '@/store/characters';
 export function CharacterCardDetail() {
   const { name } = useParams<{ name: string }>();
 
-  const { characters } = useCharactersStore();
+  const { characters, isLoading } = useCharactersStore();
 
   const character = characters.find((character) => character.name === name);
 
   const history = useHistory();
 
-  if (!character) {
+  if (!character && !isLoading) {
     history.push('/not-found');
     return null;
   }
@@ -21,7 +21,11 @@ export function CharacterCardDetail() {
   return (
     <Layout>
       <section className="w-full h-full flex flex-col ">
-        <CharacterCard character={character} version="detail" />
+        {character ? (
+          <CharacterCard character={character} version="detail" />
+        ) : (
+          <div className="w-full h-full min-h-[15rem] min-w-[10rem] bg-white rounded-lg animate-pulse mb-4" />
+        )}
         <Link
           className="h-10 w-[10%] flex justify-between items-center mx-2 text-white bg-grey border-violet hover:bg-violet p-2 ml-5 rounded-lg cursor-pointer border transition duration-300 ease-out"
           to="/"
