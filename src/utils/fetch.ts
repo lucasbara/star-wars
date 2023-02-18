@@ -1,4 +1,4 @@
-import { Character, CharacterApiResponse } from '@/types/fetch';
+import { Character, CharacterApiResponse } from '@/types/characters';
 import { FilmsApiResponse } from '@/types/films';
 import { PlanetsApiResponse } from '@/types/planets';
 
