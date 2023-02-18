@@ -8,7 +8,7 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="w-full max-w-[80vw] mx-auto h-screen flex flex-col">
+    <div className="w-full max-w-[80vw] mx-auto h-screen flex flex-col py-2">
       <Header />
       <main className="flex-1 p-6">{children}</main>
       <Footer />
