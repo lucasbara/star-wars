@@ -2,6 +2,8 @@
 
 Single Page Application of the [Star Wars World](https://swapi.dev/)
 
+Demo available at [www.star-wars.lucasbara.dev](https://star-wars-lucas-bara.vercel.app/)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development.
