@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Select } from '@/components/Select';
@@ -6,6 +6,7 @@ import { TextField } from '@/components/TextField';
 import { useCharactersStore } from '@/store/characters';
 import { useFiltersStore } from '@/store/filters';
 import { useFilmsStore } from '@/store/films';
+import { usePlanetsStore } from '@/store/planets';
 
 type LayoutProps = {
   children: ReactNode;
@@ -14,9 +15,16 @@ type LayoutProps = {
 let searchTimeout: NodeJS.Timeout;
 
 export function Layout({ children }: LayoutProps) {
-  const { characters } = useCharactersStore();
+  const { characters, setCharacters } = useCharactersStore();
   const { search, setSearch, select, setSelect } = useFiltersStore();
-  const { films } = useFilmsStore();
+  const { films, setFilms } = useFilmsStore();
+  const { setPlanets } = usePlanetsStore();
+
+  useEffect(() => {
+    setCharacters();
+    setFilms();
+    setPlanets();
+  }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(searchTimeout);
