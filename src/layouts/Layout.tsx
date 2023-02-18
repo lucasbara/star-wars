@@ -4,7 +4,6 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Select } from '@/components/Select';
 import { TextField } from '@/components/TextField';
-import useLocalStorage from '@/hooks/useLocalStorage';
 import { useCharactersStore } from '@/store/characters';
 import { useFilmsStore } from '@/store/films';
 import { useFiltersStore } from '@/store/filters';
