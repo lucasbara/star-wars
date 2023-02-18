@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { BiMaleSign, BiFemaleSign } from 'react-icons/bi';
 import { GiBodyHeight, GiWeight } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
@@ -6,11 +5,12 @@ import { Avatar } from '@/components/Avatar';
 import { useFilmsStore } from '@/store/films';
 import { usePlanetsStore } from '@/store/planets';
 import { formateDate } from '@/utils/dates';
+import { Character } from '@/types/characters';
 
 type CharacterCardVersion = 'list' | 'detail';
 
 type CharacterCardProps = {
-  character: any;
+  character: Character;
   version: CharacterCardVersion;
 };
 

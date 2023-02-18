@@ -1,8 +1,9 @@
 import { CharacterCard } from '@/components/CharacterCard';
 import { Error } from '@/layouts/Error';
+import { Character } from '@/types/characters';
 
 type CharactersListProps = {
-  data: any;
+  data: Array<Character>;
   isLoading: boolean;
   error: unknown;
 };
@@ -24,8 +25,8 @@ export function CharactersList({ data, isLoading, error }: CharactersListProps) 
                 ></li>
               );
             })
-          : data.map((character: any) => (
-              <CharacterCard key={character.id} character={character} version="list" />
+          : data.map((character) => (
+              <CharacterCard key={character.url} character={character} version="list" />
             ))}
       </ul>
     </section>
