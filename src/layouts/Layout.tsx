@@ -10,11 +10,12 @@ import { usePlanetsStore } from '@/store/planets';
 
 type LayoutProps = {
   children: ReactNode;
+  noFilters?: boolean;
 };
 
 let searchTimeout: NodeJS.Timeout;
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, noFilters }: LayoutProps) {
   const { characters, setCharacters } = useCharactersStore();
   const { search, setSearch, select, setSelect } = useFiltersStore();
   const { films, setFilms } = useFilmsStore();
@@ -36,22 +37,24 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="w-full max-w-[80vw] mx-auto h-screen flex flex-col py-2">
       <Header />
-      <div className="w-full flex justify-center md:justify-between items-center pt-2 md:pt-0 pl-11">
-        <TextField
-          name="search"
-          onChange={onChange}
-          placeholder="Search for a character..."
-          value={search}
-        />
-        <Select
-          options={Object.entries(films).filter(([url]) =>
-            characters.some((character) => character.films.includes(url)),
-          )}
-          value={select}
-          onChange={(event) => setSelect(event.target.value)}
-          placeholder="Select a film..."
-        />
-      </div>
+      {!noFilters && (
+        <div className="w-full flex justify-center md:justify-between items-center pt-2 md:pt-0 pl-11">
+          <TextField
+            name="search"
+            onChange={onChange}
+            placeholder="Search for a character..."
+            value={search}
+          />
+          <Select
+            options={Object.entries(films).filter(([url]) =>
+              characters.some((character) => character.films.includes(url)),
+            )}
+            value={select}
+            onChange={(event) => setSelect(event.target.value)}
+            placeholder="Select a film..."
+          />
+        </div>
+      )}
       <main className="flex-1 p-6">{children}</main>
       <Footer />
     </div>
