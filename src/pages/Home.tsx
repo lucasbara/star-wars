@@ -94,7 +94,7 @@ export function Home() {
             Previous
           </Button>
           <Button
-            disabled={page === totalPages || !getDisplayedCharacters().length}
+            disabled={page === totalPages || getDisplayedCharacters().length < charactersPerPage}
             onClick={onNextPage}
             type="button"
           >
