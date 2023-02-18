@@ -9,7 +9,7 @@ type ErrorProps = {
 
 export function Error({ code, message }: ErrorProps) {
   return (
-    <Layout>
+    <Layout noFilters>
       <section className="w-full h-full flex flex-col justify-center items-center">
         <h1 className="text-[10rem] text-violet font-bold">{code || 'Error'}</h1>
         <h2 className="font-bold">{message}</h2>
