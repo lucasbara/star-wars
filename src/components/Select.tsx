@@ -8,7 +8,7 @@ type SelectProps = {
 export function Select({ onChange, options, placeholder, value }: SelectProps) {
   return (
     <select
-      className="bg-grey w-[20%] h-10 text-white placeholder-light-grey p-2 rounded-lg focus:outline-none mx-2"
+      className="bg-grey w-[20%] min-w-[10rem] h-10 text-white placeholder-light-grey p-2 rounded-lg focus:outline-none mx-2"
       value={value}
       onChange={onChange}
     >
