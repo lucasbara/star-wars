@@ -24,7 +24,7 @@ export type CharacterApiResponse = {
   results: Array<Character>;
 };
 
-type CharacterState = {
+export type CharacterState = {
   characters: Array<Character>;
   error: unknown | null;
   isLoading: boolean;
