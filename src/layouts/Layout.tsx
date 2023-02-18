@@ -1,12 +1,11 @@
 import { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Select } from '@/components/Select';
 import { TextField } from '@/components/TextField';
 import { useCharactersStore } from '@/store/characters';
-import { useFilmsStore } from '@/store/films';
 import { useFiltersStore } from '@/store/filters';
+import { useFilmsStore } from '@/store/films';
 
 type LayoutProps = {
   children: ReactNode;
@@ -15,10 +14,8 @@ type LayoutProps = {
 let searchTimeout: NodeJS.Timeout;
 
 export function Layout({ children }: LayoutProps) {
-  const { search, setSearch, select, setSelect } = useFiltersStore();
-
   const { characters } = useCharactersStore();
-
+  const { search, setSearch, select, setSelect } = useFiltersStore();
   const { films } = useFilmsStore();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +28,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="w-full max-w-[80vw] mx-auto h-screen flex flex-col py-2">
       <Header />
-      <div className="w-full flex justify-center md:justify-between items-center ml-6">
+      <div className="w-full flex justify-center md:justify-between items-center pt-2 md:pt-0 pl-11">
         <TextField
           name="search"
           onChange={onChange}
