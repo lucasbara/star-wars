@@ -14,15 +14,7 @@ export function Home() {
 
   const { search, select } = useFiltersStore();
 
-  const { characters, error, isLoading, setCharacters } = useCharactersStore();
-  const { setFilms } = useFilmsStore();
-  const { setPlanets } = usePlanetsStore();
-
-  useEffect(() => {
-    setCharacters();
-    setFilms();
-    setPlanets();
-  }, []);
+  const { characters, error, isLoading } = useCharactersStore();
 
   useEffect(() => {
     setPage(1);
