@@ -16,6 +16,7 @@ export function Home() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [selectedFilm, setSelectedFilm] = useState('');
+
   const { characters, error, isLoading, setCharacters } = useCharactersStore();
   const { films, setFilms } = useFilmsStore();
   const { setPlanets } = usePlanetsStore();
@@ -44,17 +45,21 @@ export function Home() {
   const getDisplayedCharacters = () => {
     const startIndex = (page - 1) * charactersPerPage;
     const endIndex = startIndex + charactersPerPage;
+
     let displayedCharacters = characters.slice(startIndex, endIndex);
+
     if (search) {
       displayedCharacters = displayedCharacters.filter((character) =>
         character.name.toLowerCase().includes(search.toLowerCase()),
       );
     }
+
     if (selectedFilm && selectedFilm !== 'all' && selectedFilm !== 'Select a film...') {
       displayedCharacters = displayedCharacters.filter((character) =>
         character.films.includes(selectedFilm),
       );
     }
+
     return displayedCharacters;
   };
 
@@ -65,7 +70,7 @@ export function Home() {
   return (
     <Layout>
       <section className="w-full h-full flex flex-col ">
-        <div className="w-full flex justify-between items-center ml-6">
+        <div className="w-full flex justify-center md:justify-between items-center ml-6">
           <TextField
             name="search"
             onChange={onChange}
