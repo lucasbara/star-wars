@@ -49,8 +49,8 @@ It has built in CI/CD to detect changes/merge on default branch to create new bu
 
 - [The Star Wars API](https://swapi.dev/) - The Star Wars API
 - [Vite](https://vitejs.dev/) - The web environment used
-- [Tailwind](https://tailwindcss.com/) CSS framework
-- [React Icons](https://react-icons.github.io/react-icons/) SVG Icons
+- [Tailwind](https://tailwindcss.com/) - CSS framework
+- [React Icons](https://react-icons.github.io/react-icons/) - SVG Icons
 
 ## Author
 
