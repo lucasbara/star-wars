@@ -1,4 +1,4 @@
-# Star Wars - Nicasource Challenge
+# Star Wars 
 
 Single Page Application of the [Star Wars World](https://swapi.dev/)
 
